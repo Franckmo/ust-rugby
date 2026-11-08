@@ -2,6 +2,7 @@ name: Synchronisation FFR
 on:
   schedule:
     - cron: '15 7,12,19 * * *'
+    - cron: '*/15 12-21 * * 0' # Dimanches de rugby, UTC
   workflow_dispatch:
   push:
     paths:
@@ -34,5 +35,15 @@ jobs:
           git add ffr-data.json
           if ! git diff --cached --quiet; then
             git commit -m "Actualiser les données officielles FFR"
-            git push
+            # Une modification concomitante du dépôt ne doit pas bloquer la publication.
+            for attempt in 1 2 3 4; do
+              git fetch origin main
+              git rebase origin/main
+              if git push origin HEAD:main; then
+                exit 0
+              fi
+              sleep 3
+            done
+            echo "Impossible de publier les données après 4 tentatives" >&2
+            exit 1
           fi
