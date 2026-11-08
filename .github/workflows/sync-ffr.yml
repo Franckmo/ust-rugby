@@ -3,6 +3,10 @@ on:
   schedule:
     - cron: '15 7,12,19 * * *'
   workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/sync_ffr.py'
+      - '.github/workflows/sync-ffr.yml'
 permissions:
   contents: write
 concurrency:
