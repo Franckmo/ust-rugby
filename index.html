@@ -12,7 +12,7 @@
 <section id="calendar"><h2>Prochains matchs</h2><p class="notice">Calendrier conservé même si la FFR est indisponible. Les informations non synchronisées sont indicatives.</p>
 <div class="controls" id="filter"><button class="active" data-value="all">Tous</button><button data-value="home">🏠 Domicile</button><button data-value="away">✈ Extérieur</button></div><div id="matches"></div></section>
 <section id="results" class="hidden"><h2>Matchs joués</h2><p class="notice">Scores confirmés jusqu’au 1er novembre 2026. Matchs du 8 novembre non encore intégrés.</p><div class="controls" id="resultsFilter"><button class="active" data-value="all">Tous</button><button data-value="home">🏠 Domicile</button><button data-value="away">✈ Extérieur</button></div><div id="pastMatches"></div></section><section id="standings" class="hidden"><h2>Classement • Poule 1</h2><table><thead><tr><th>#</th><th>Club</th><th>J</th><th>Pts</th></tr></thead><tbody id="rows"></tbody></table></section>
-<footer>Données de référence au 8 novembre 2026, avant résultats du jour. Mise à jour non automatique. Horaires et affiches à confirmer auprès des clubs. Application non officielle.
+<footer>Données locales de secours au 8 novembre 2026. Synchronisation officielle FFR utilisée uniquement après validation des données. Horaires et résultats à confirmer auprès du club. Application non officielle.
 <p><a href="https://ustours.fr/" target="_blank" rel="noopener">Site de l'US Tours</a></p></footer></main>
 <script>
 let tables={seniors:[['Saint-Jean-en-Royans',29,7],['Tours',29,7],['Nuits-Saint-Georges',24,7],['Issoire',24,7],['Montmélian',24,7],['Beauvais',21,7],['Courbevoie',21,7],['Saint-Malo',16,7],['Auxerre',15,7],['Bièvre Saint-Geoirs',10,7],['Paris UC',10,7],['Annecy',4,7]],espoirs:[['Issoire',32,7],['Saint-Jean-en-Royans',28,7],['Montmélian',28,7],['Nuits-Saint-Georges',21,7],['Saint-Malo',21,7],['Courbevoie',17,8],['Beauvais',16,7],['Tours',14,7],['Paris UC',12,8],['Auxerre',10,7],['Annecy',4,7],['Bièvre Saint-Geoirs',2,7]]};
@@ -65,7 +65,7 @@ async function loadFFR(){
    }
   }
   const footer=document.querySelector('footer');
-  if(footer)footer.insertAdjacentHTML('afterbegin','<p style="color:#91e4b1">Source : FFR Mon Club House · Dernière vérification '+new Date(data.lastChecked).toLocaleString('fr-FR')+'</p>');
+  if(footer)footer.insertAdjacentHTML('afterbegin','<p style="color:#91e4b1">Source : FFR Mon Club House · Données synchronisées · Contrôle du '+new Date(data.lastChecked).toLocaleString('fr-FR')+'</p>');
   render();
  }catch(err){console.warn('FFR indisponible, données locales conservées',err)}
 }
