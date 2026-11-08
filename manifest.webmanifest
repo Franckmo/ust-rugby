@@ -1,0 +1,18 @@
+{
+  "name": "US Tours Rugby",
+  "short_name": "UST Rugby",
+  "description": "Classements et calendrier de l'US Tours Rugby",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0d2234",
+  "theme_color": "#112c42",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
