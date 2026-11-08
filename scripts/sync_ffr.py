@@ -36,7 +36,10 @@ def collect_live(browser):
  page=browser.new_page(locale="fr-FR")
  try:
   page.goto(ROOT+"/rugby-direct",wait_until="domcontentloaded",timeout=45000)
-  page.wait_for_timeout(4500)
+  page.wait_for_timeout(1500)
+  try:page.get_by_text("Tous les matchs",exact=True).first.click(timeout=6000)
+  except Exception as e:print("onglet absent",str(e)[:150])
+  page.wait_for_timeout(6000)
   text=" ".join(page.locator("body").inner_text().split())
   ix=text.find("US Tours")
   print("LIVE DIAGNOSTIC: len",len(text),"Tours position",ix,"snippet",text[max(0,ix-450):ix+650] if ix>=0 else text[:1200])
