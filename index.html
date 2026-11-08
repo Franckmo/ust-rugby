@@ -8,19 +8,39 @@
 </style></head><body><main><header><div class="logo">UST</div><div><h1>US TOURS RUGBY</h1><small>Seniors & Espoirs • 2026–2027</small></div></header>
 <div class="controls" id="team"><button class="active" data-value="seniors">Seniors</button><button data-value="espoirs">Espoirs</button></div>
 <div class="stats"><div class="stat"><b id="rank"></b><small>Classement</small></div><div class="stat"><b id="points"></b><small>Points</small></div><div class="stat"><b id="record"></b><small>Bilan</small></div></div>
-<div class="controls" id="view"><button class="active" data-value="calendar">📅 Calendrier</button><button data-value="standings">🏆 Classement</button></div>
+<div class="controls" id="view"><button class="active" data-value="calendar">📅 Calendrier</button><button data-value="standings">🏆 Classement</button><button data-value="results">🏉 Résultats</button></div>
 <section id="calendar"><h2>Calendrier indicatif</h2><p class="notice">Affiche les rencontres programmées dans la première version. Les résultats du 8 novembre et les éventuels changements ne sont pas encore intégrés.</p>
 <div class="controls" id="filter"><button class="active" data-value="all">Tous</button><button data-value="home">🏠 Domicile</button><button data-value="away">✈ Extérieur</button></div><div id="matches"></div></section>
-<section id="standings" class="hidden"><h2>Classement • Poule 1</h2><table><thead><tr><th>#</th><th>Club</th><th>J</th><th>Pts</th></tr></thead><tbody id="rows"></tbody></table></section>
+<section id="results" class="hidden"><h2>Matchs joués</h2><p class="notice">Scores confirmés jusqu’au 1er novembre 2026. Matchs du 8 novembre non encore intégrés.</p><div class="controls" id="resultsFilter"><button class="active" data-value="all">Tous</button><button data-value="home">🏠 Domicile</button><button data-value="away">✈ Extérieur</button></div><div id="pastMatches"></div></section><section id="standings" class="hidden"><h2>Classement • Poule 1</h2><table><thead><tr><th>#</th><th>Club</th><th>J</th><th>Pts</th></tr></thead><tbody id="rows"></tbody></table></section>
 <footer>Données de référence au 8 novembre 2026, avant résultats du jour. Mise à jour non automatique. Horaires et affiches à confirmer auprès des clubs. Application non officielle.
 <p><a href="https://ustours.fr/" target="_blank" rel="noopener">Site de l'US Tours</a></p></footer></main>
 <script>
 const tables={seniors:[['Saint-Jean-en-Royans',29,7],['Tours',29,7],['Nuits-Saint-Georges',24,7],['Issoire',24,7],['Montmélian',24,7],['Beauvais',21,7],['Courbevoie',21,7],['Saint-Malo',16,7],['Auxerre',15,7],['Bièvre Saint-Geoirs',10,7],['Paris UC',10,7],['Annecy',4,7]],espoirs:[['Issoire',32,7],['Saint-Jean-en-Royans',28,7],['Montmélian',28,7],['Nuits-Saint-Georges',21,7],['Saint-Malo',21,7],['Courbevoie',17,8],['Beauvais',16,7],['Tours',14,7],['Paris UC',12,8],['Auxerre',10,7],['Annecy',4,7],['Bièvre Saint-Geoirs',2,7]]};
 const fixtures=[['2026-11-08','Montmélian',true],['2026-11-15','Courbevoie',false],['2026-11-29','Bièvre Saint-Geoirs',true],['2026-12-06','Paris UC',false],['2026-12-13','Annecy',true],['2027-01-10','Nuits-Saint-Georges',false],['2027-01-17','Saint-Malo',true],['2027-01-31','Issoire',false],['2027-02-07','Auxerre',true],['2027-02-14','Beauvais',false],['2027-02-28','Saint-Jean-en-Royans',true],['2027-03-07','Montmélian',false],['2027-03-21','Courbevoie',true],['2027-03-28','Bièvre Saint-Geoirs',false],['2027-04-11','Paris UC',true]];
-let team='seniors',view='calendar',filter='all';const el=id=>document.getElementById(id);const rank=name=>{let a=tables[team],club=a.find(x=>x[0]===name);return club?1+a.filter(x=>x[1]>club[1]).length:'?'};const ord=n=>n===1?'1er':n+'e';
-function render(){const m=tables[team].find(x=>x[0]==='Tours');el('rank').textContent=ord(rank('Tours'));el('points').textContent=m[1];el('record').textContent=team==='seniors'?'6V / 1D':'3V / 4D';el('calendar').classList.toggle('hidden',view!=='calendar');el('standings').classList.toggle('hidden',view!=='standings');
+const results={
+seniors:[
+['2026-11-01','Saint-Jean-en-Royans',false,27,35],
+['2026-10-18','Beauvais',true,37,38],
+['2026-10-11','Auxerre',false,35,43],
+['2026-10-03','Issoire',true,28,25],
+['2026-09-20','Saint-Malo',false,13,26],
+['2026-09-13','Nuits-Saint-Georges',true,50,14],
+['2026-09-05','Annecy',false,9,31]
+],
+espoirs:[
+['2026-11-01','Saint-Jean-en-Royans',false,29,17],
+['2026-10-18','Beauvais',true,30,7],
+['2026-10-11','Auxerre',false,19,20],
+['2026-10-03','Issoire',true,15,36],
+['2026-09-20','Saint-Malo',false,38,14],
+['2026-09-13','Nuits-Saint-Georges',true,13,15],
+['2026-09-05','Annecy',false,39,40]
+]};
+let team='seniors',view='calendar',filter='all',resultsFilter='all';const el=id=>document.getElementById(id);const rank=name=>{let a=tables[team],club=a.find(x=>x[0]===name);return club?1+a.filter(x=>x[1]>club[1]).length:'?'};const ord=n=>n===1?'1er':n+'e';
+function render(){const m=tables[team].find(x=>x[0]==='Tours');el('rank').textContent=ord(rank('Tours'));el('points').textContent=m[1];el('record').textContent=team==='seniors'?'6V / 1D':'3V / 4D';el('calendar').classList.toggle('hidden',view!=='calendar');el('standings').classList.toggle('hidden',view!=='standings');el('results').classList.toggle('hidden',view!=='results');
 el('rows').innerHTML=tables[team].map(x=>'<tr class="'+(x[0]==='Tours'?'ust':'')+'"><td>'+ord(rank(x[0]))+'</td><td>'+x[0]+'</td><td>'+x[2]+'</td><td>'+x[1]+'</td></tr>').join('');
+el('pastMatches').innerHTML=results[team].filter(x=>resultsFilter==='all'||(resultsFilter==='home'?x[2]:!x[2])).map(x=>{const d=new Date(x[0]+'T12:00:00'),day=d.getDate(),month=d.toLocaleString('fr-FR',{month:'short'}),left=x[2]?'Tours':x[1],right=x[2]?x[1]:'Tours',tourScore=x[2]?x[3]:x[4],oppScore=x[2]?x[4]:x[3],outcome=tourScore>oppScore?'Victoire':tourScore<oppScore?'Défaite':'Nul';return '<article class="match"><div class="date">'+day+'<small>'+month+' '+d.getFullYear()+'</small></div><span class="place">'+(x[2]?'🏠':'✈️')+'</span><div style="flex:1"><strong>'+left+' – '+right+'</strong><div style="font-size:21px;font-weight:800;margin:4px 0">'+x[3]+' – '+x[4]+'</div><div class="detail">'+(x[2]?'À domicile':'À l’extérieur')+' · <span style="color:'+(outcome==='Victoire'?'#77edac':outcome==='Défaite'?'#ffae98':'#ddd')+'">'+outcome+'</span></div></div></article>'}).join('');
 el('matches').innerHTML=fixtures.filter(x=>(team==='seniors'||x[0]!=='2026-11-08')&&(filter==='all'||(filter==='home'?x[2]:!x[2]))).map(x=>{let d=new Date(x[0]+'T12:00:00'),day=d.getDate(),month=d.toLocaleString('fr-FR',{month:'short'}),left=x[2]?'Tours':x[1],right=x[2]?x[1]:'Tours';return '<article class="match"><div class="date">'+day+'<small>'+month+' '+d.getFullYear()+'</small></div><span class="place">'+(x[2]?'🏠':'✈️')+'</span><div><strong>'+left+' ('+ord(rank(left))+') – '+right+' ('+ord(rank(right))+')</strong><div class="detail">'+(x[2]?'À domicile · stade Tonnellé':'À l’extérieur')+' · '+(team==='seniors'?'15h15':'13h30')+' (prévisionnel)</div></div></article>'}).join('')}
-['team','view','filter'].forEach(group=>{el(group).querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{if(group==='team')team=b.dataset.value;if(group==='view')view=b.dataset.value;if(group==='filter')filter=b.dataset.value;el(group).querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===b));render()}))});render();
+['team','view','filter','resultsFilter'].forEach(group=>{el(group).querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{if(group==='team')team=b.dataset.value;if(group==='view')view=b.dataset.value;if(group==='filter')filter=b.dataset.value;if(group==='resultsFilter')resultsFilter=b.dataset.value;el(group).querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===b));render()}))});render();
 if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
 </script></body></html>
