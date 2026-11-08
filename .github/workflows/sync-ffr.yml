@@ -22,7 +22,9 @@ jobs:
         with:
           python-version: '3.12'
       - name: Installer les dépendances
-        run: pip install 'requests>=2.32,<3' 'beautifulsoup4>=4.12,<5'
+        run: |
+          pip install 'beautifulsoup4>=4.12,<5' 'playwright>=1.55,<2'
+          python -m playwright install --with-deps chromium
       - name: Récupérer et contrôler les données FFR
         run: python scripts/sync_ffr.py
       - name: Enregistrer seulement si les données ont changé
