@@ -32,6 +32,18 @@ def get(browser,url):
   raise RuntimeError("La FFR n'a pas chargé les données du championnat")
  finally:
   page.close()
+def collect_live(browser):
+ page=browser.new_page(locale="fr-FR")
+ try:
+  page.goto(ROOT+"/rugby-direct",wait_until="domcontentloaded",timeout=45000)
+  page.wait_for_timeout(4500)
+  text=" ".join(page.locator("body").inner_text().split())
+  ix=text.find("US Tours")
+  print("LIVE DIAGNOSTIC: len",len(text),"Tours position",ix,"snippet",text[max(0,ix-450):ix+650] if ix>=0 else text[:1200])
+  return []
+ finally:
+  page.close()
+
 def collect_games(html):
  # Les pages publiques affichent toutes les journées et la mention « Terminé » pour les résultats validés.
  text=" ".join(html.stripped_strings)
@@ -71,6 +83,8 @@ def main():
  errors=[]
  with sync_playwright() as playwright:
   browser=playwright.chromium.launch(headless=True)
+  try: collect_live(browser)
+  except Exception as exc:print('DIRECT non accessible:',str(exc))
   for team,slug in CATEGORIES.items():
    previous=old.get("teams",{}).get(team,{})
    group=dict(previous)
