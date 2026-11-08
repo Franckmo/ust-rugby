@@ -76,3 +76,12 @@ PWA installée sur Android / navigateur desktop
 ## Reprise rapide pour une nouvelle conversation
 
 > « Reprends le projet US Tours Rugby depuis `Franckmo/ust-rugby`. Lis le README comme référence, examine `index.html`, `scripts/sync_ffr.py`, `.github/workflows/sync-ffr.yml` et le dernier `ffr-data.json`. Vérifie le dernier état GitHub Actions avant toute modification. Préserve systématiquement les fonctionnalités existantes. »
+
+## Diagnostic et correction de la mise à jour — 8 novembre 2026, soirée
+
+- **Problème observé** : entre environ 16h38 et 20h, aucun nouveau `ffr-data.json` publié ; le score 33–13 restait marqué `live` malgré la fin du match. Les synchronisations sur `push` avaient réussi, mais aucune exécution planifiée (`schedule`) n'était visible dans l'historique GitHub durant cet intervalle.
+- **Correction apportée** : déplacer les cron hors des minutes rondes (dimanche `2-59/5 12-19 * * 0`, et horaires quotidiens minute 17), car les déclenchements planifiés GitHub peuvent être retardés ou ignorés. **Cela n'est pas encore une garantie : vérifier de vraies exécutions de type `schedule` avant de considérer le direct autonome comme fiable.**
+- **Sécurité côté application** : afficher un avertissement « Données anciennes » au-delà de 15 minutes depuis la dernière collecte FFR ; un statut `live` de plus de 15 minutes devient « Dernier score connu » plutôt que « En direct ».
+- **Test après correctif** : workflow `42513061831` exécuté avec succès par déclenchement `push`, fichier `ffr-data.json` mis à jour à `2026-11-08T19:03:56Z`.
+- **Score FFR récupéré à ce moment-là** : Seniors Tours–Montmélian **43–18 terminé** (Tours 33 points / 8 matchs), Espoirs **24–10 terminé** (Tours 18 points / 8 matchs). Une source tierce indiquait 44–18 ; **ne pas confondre cette divergence avec la source officielle FFR**.
+- **Point restant à surveiller** : les exécutions planifiées doivent se déclencher réellement les jours suivants. Le bouton « Recharger les données » lit le fichier publié ; il ne déclenche pas lui-même un nouveau relevé FFR.
