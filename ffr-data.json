@@ -1,6 +1,6 @@
 {
   "source": "FFR Mon Club House",
-  "lastChecked": "2026-11-08T15:25:00+00:00",
+  "lastChecked": "2026-11-08T15:26:18+00:00",
   "teams": {
     "seniors": {
       "games": [
@@ -166,7 +166,7 @@
           "status": "scheduled"
         }
       ],
-      "gamesUpdatedAt": "2026-11-08T15:25:00+00:00",
+      "gamesUpdatedAt": "2026-11-08T15:26:18+00:00",
       "standings": [
         {
           "club": "Saint-Jean-en-Royans",
@@ -229,7 +229,7 @@
           "played": 7
         }
       ],
-      "standingsUpdatedAt": "2026-11-08T15:25:00+00:00"
+      "standingsUpdatedAt": "2026-11-08T15:26:18+00:00"
     },
     "espoirs": {
       "games": [
@@ -404,7 +404,7 @@
           "status": "scheduled"
         }
       ],
-      "gamesUpdatedAt": "2026-11-08T15:25:00+00:00",
+      "gamesUpdatedAt": "2026-11-08T15:26:18+00:00",
       "standings": [
         {
           "club": "Issoire",
@@ -467,7 +467,7 @@
           "played": 7
         }
       ],
-      "standingsUpdatedAt": "2026-11-08T15:25:00+00:00"
+      "standingsUpdatedAt": "2026-11-08T15:26:18+00:00"
     }
   }
 }
