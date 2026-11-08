@@ -1,6 +1,6 @@
 {
   "source": "FFR Mon Club House",
-  "lastChecked": "2026-11-08T15:26:18+00:00",
+  "lastChecked": "2026-11-08T15:28:36+00:00",
   "teams": {
     "seniors": {
       "games": [
@@ -66,6 +66,15 @@
           "status": "finished",
           "homeScore": 27,
           "awayScore": 35
+        },
+        {
+          "date": "2026-11-08",
+          "time": "15:15",
+          "home": "Tours",
+          "away": "Montmélian",
+          "status": "live",
+          "homeScore": 26,
+          "awayScore": 13
         },
         {
           "date": "2026-11-15",
@@ -166,7 +175,7 @@
           "status": "scheduled"
         }
       ],
-      "gamesUpdatedAt": "2026-11-08T15:26:18+00:00",
+      "gamesUpdatedAt": "2026-11-08T15:28:36+00:00",
       "standings": [
         {
           "club": "Saint-Jean-en-Royans",
@@ -229,7 +238,7 @@
           "played": 7
         }
       ],
-      "standingsUpdatedAt": "2026-11-08T15:26:18+00:00"
+      "standingsUpdatedAt": "2026-11-08T15:28:36+00:00"
     },
     "espoirs": {
       "games": [
@@ -404,7 +413,7 @@
           "status": "scheduled"
         }
       ],
-      "gamesUpdatedAt": "2026-11-08T15:26:18+00:00",
+      "gamesUpdatedAt": "2026-11-08T15:28:36+00:00",
       "standings": [
         {
           "club": "Issoire",
@@ -467,7 +476,7 @@
           "played": 7
         }
       ],
-      "standingsUpdatedAt": "2026-11-08T15:26:18+00:00"
+      "standingsUpdatedAt": "2026-11-08T15:28:36+00:00"
     }
   }
 }
