@@ -15,9 +15,9 @@
 <footer>Données de référence au 8 novembre 2026, avant résultats du jour. Mise à jour non automatique. Horaires et affiches à confirmer auprès des clubs. Application non officielle.
 <p><a href="https://ustours.fr/" target="_blank" rel="noopener">Site de l'US Tours</a></p></footer></main>
 <script>
-const tables={seniors:[['Saint-Jean-en-Royans',29,7],['Tours',29,7],['Nuits-Saint-Georges',24,7],['Issoire',24,7],['Montmélian',24,7],['Beauvais',21,7],['Courbevoie',21,7],['Saint-Malo',16,7],['Auxerre',15,7],['Bièvre Saint-Geoirs',10,7],['Paris UC',10,7],['Annecy',4,7]],espoirs:[['Issoire',32,7],['Saint-Jean-en-Royans',28,7],['Montmélian',28,7],['Nuits-Saint-Georges',21,7],['Saint-Malo',21,7],['Courbevoie',17,8],['Beauvais',16,7],['Tours',14,7],['Paris UC',12,8],['Auxerre',10,7],['Annecy',4,7],['Bièvre Saint-Geoirs',2,7]]};
-const fixtures=[['2026-11-08','Montmélian',true],['2026-11-15','Courbevoie',false],['2026-11-29','Bièvre Saint-Geoirs',true],['2026-12-06','Paris UC',false],['2026-12-13','Annecy',true],['2027-01-10','Nuits-Saint-Georges',false],['2027-01-17','Saint-Malo',true],['2027-01-31','Issoire',false],['2027-02-07','Auxerre',true],['2027-02-14','Beauvais',false],['2027-02-28','Saint-Jean-en-Royans',true],['2027-03-07','Montmélian',false],['2027-03-21','Courbevoie',true],['2027-03-28','Bièvre Saint-Geoirs',false],['2027-04-11','Paris UC',true]];
-const results={
+let tables={seniors:[['Saint-Jean-en-Royans',29,7],['Tours',29,7],['Nuits-Saint-Georges',24,7],['Issoire',24,7],['Montmélian',24,7],['Beauvais',21,7],['Courbevoie',21,7],['Saint-Malo',16,7],['Auxerre',15,7],['Bièvre Saint-Geoirs',10,7],['Paris UC',10,7],['Annecy',4,7]],espoirs:[['Issoire',32,7],['Saint-Jean-en-Royans',28,7],['Montmélian',28,7],['Nuits-Saint-Georges',21,7],['Saint-Malo',21,7],['Courbevoie',17,8],['Beauvais',16,7],['Tours',14,7],['Paris UC',12,8],['Auxerre',10,7],['Annecy',4,7],['Bièvre Saint-Geoirs',2,7]]};
+let fixtures=[['2026-11-08','Montmélian',true],['2026-11-15','Courbevoie',false],['2026-11-29','Bièvre Saint-Geoirs',true],['2026-12-06','Paris UC',false],['2026-12-13','Annecy',true],['2027-01-10','Nuits-Saint-Georges',false],['2027-01-17','Saint-Malo',true],['2027-01-31','Issoire',false],['2027-02-07','Auxerre',true],['2027-02-14','Beauvais',false],['2027-02-28','Saint-Jean-en-Royans',true],['2027-03-07','Montmélian',false],['2027-03-21','Courbevoie',true],['2027-03-28','Bièvre Saint-Geoirs',false],['2027-04-11','Paris UC',true]];
+let results={
 seniors:[
 ['2026-11-01','Saint-Jean-en-Royans',false,27,35],
 ['2026-10-18','Beauvais',true,37,38],
@@ -36,11 +36,39 @@ espoirs:[
 ['2026-09-13','Nuits-Saint-Georges',true,13,15],
 ['2026-09-05','Annecy',false,39,40]
 ]};
-let team='seniors',view='calendar',filter='all',resultsFilter='all';const el=id=>document.getElementById(id);const rank=name=>{let a=tables[team],club=a.find(x=>x[0]===name);return club?1+a.filter(x=>x[1]>club[1]).length:'?'};const ord=n=>n===1?'1er':n+'e';
+let team='seniors',view='calendar',filter='all',resultsFilter='all';let fixturesByTeam={seniors:fixtures,espoirs:fixtures};const el=id=>document.getElementById(id);const rank=name=>{let a=tables[team],club=a.find(x=>x[0]===name);return club?1+a.filter(x=>x[1]>club[1]).length:'?'};const ord=n=>n===1?'1er':n+'e';
 function render(){const m=tables[team].find(x=>x[0]==='Tours');el('rank').textContent=ord(rank('Tours'));el('points').textContent=m[1];el('record').textContent=team==='seniors'?'6V / 1D':'3V / 4D';el('calendar').classList.toggle('hidden',view!=='calendar');el('standings').classList.toggle('hidden',view!=='standings');el('results').classList.toggle('hidden',view!=='results');
 el('rows').innerHTML=tables[team].map(x=>'<tr class="'+(x[0]==='Tours'?'ust':'')+'"><td>'+ord(rank(x[0]))+'</td><td>'+x[0]+'</td><td>'+x[2]+'</td><td>'+x[1]+'</td></tr>').join('');
 el('pastMatches').innerHTML=results[team].filter(x=>resultsFilter==='all'||(resultsFilter==='home'?x[2]:!x[2])).map(x=>{const d=new Date(x[0]+'T12:00:00'),day=d.getDate(),month=d.toLocaleString('fr-FR',{month:'short'}),left=x[2]?'Tours':x[1],right=x[2]?x[1]:'Tours',tourScore=x[2]?x[3]:x[4],oppScore=x[2]?x[4]:x[3],outcome=tourScore>oppScore?'Victoire':tourScore<oppScore?'Défaite':'Nul';return '<article class="match"><div class="date">'+day+'<small>'+month+' '+d.getFullYear()+'</small></div><span class="place">'+(x[2]?'🏠':'✈️')+'</span><div style="flex:1"><strong>'+left+' – '+right+'</strong><div style="font-size:21px;font-weight:800;margin:4px 0">'+x[3]+' – '+x[4]+'</div><div class="detail">'+(x[2]?'À domicile':'À l’extérieur')+' · <span style="color:'+(outcome==='Victoire'?'#77edac':outcome==='Défaite'?'#ffae98':'#ddd')+'">'+outcome+'</span></div></div></article>'}).join('');
-el('matches').innerHTML=fixtures.filter(x=>(team==='seniors'||x[0]!=='2026-11-08')&&(filter==='all'||(filter==='home'?x[2]:!x[2]))).map(x=>{let d=new Date(x[0]+'T12:00:00'),day=d.getDate(),month=d.toLocaleString('fr-FR',{month:'short'}),left=x[2]?'Tours':x[1],right=x[2]?x[1]:'Tours';return '<article class="match"><div class="date">'+day+'<small>'+month+' '+d.getFullYear()+'</small></div><span class="place">'+(x[2]?'🏠':'✈️')+'</span><div><strong>'+left+' ('+ord(rank(left))+') – '+right+' ('+ord(rank(right))+')</strong><div class="detail">'+(x[2]?'À domicile · stade Tonnellé':'À l’extérieur')+' · '+(team==='seniors'?'15h15':'13h30')+' (prévisionnel)</div></div></article>'}).join('')}
-['team','view','filter','resultsFilter'].forEach(group=>{el(group).querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{if(group==='team')team=b.dataset.value;if(group==='view')view=b.dataset.value;if(group==='filter')filter=b.dataset.value;if(group==='resultsFilter')resultsFilter=b.dataset.value;el(group).querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===b));render()}))});render();
+el('matches').innerHTML=fixturesByTeam[team].filter(x=(filter==='all'||(filter==='home'?x[2]:!x[2]))).map(x=>{let d=new Date(x[0]+'T12:00:00'),day=d.getDate(),month=d.toLocaleString('fr-FR',{month:'short'}),left=x[2]?'Tours':x[1],right=x[2]?x[1]:'Tours';return '<article class="match"><div class="date">'+day+'<small>'+month+' '+d.getFullYear()+'</small></div><span class="place">'+(x[2]?'🏠':'✈️')+'</span><div><strong>'+left+' ('+ord(rank(left))+') – '+right+' ('+ord(rank(right))+')</strong><div class="detail">'+(x[2]?'À domicile · stade Tonnellé':'À l’extérieur')+' · '+(team==='seniors'?'15h15':'13h30')+' (prévisionnel)</div></div></article>'}).join('')}
+async function loadFFR(){
+ try {
+  const response=await fetch('./ffr-data.json?d='+Math.floor(Date.now()/3600000),{cache:'no-store'});
+  if(!response.ok) return;
+  const data=await response.json();
+  for(const key of ['seniors','espoirs']){
+   const info=data.teams?.[key];
+   if(!info)continue;
+   if(info.standings?.length===12){
+    tables[key]=info.standings.map(x=>[x.club,x.points,x.played]);
+   }
+   if(info.games?.length>=7){
+    const all=info.games;
+    const done=all.filter(x=>x.status==='finished'&&Number.isFinite(x.homeScore)&&Number.isFinite(x.awayScore));
+    const upcoming=all.filter(x=>x.status!=='finished'&&x.date>=new Date().toISOString().slice(0,10));
+    if(done.length>=3){
+     results[key]=done.map(x=>[x.date,x.home==='Tours'?x.away:x.home,x.home==='Tours',x.homeScore,x.awayScore]).reverse();
+    }
+    if(upcoming.length){
+     fixturesByTeam[key]=upcoming.map(x=>[x.date,x.home==='Tours'?x.away:x.home,x.home==='Tours']);
+    }
+   }
+  }
+  const footer=document.querySelector('footer');
+  if(footer)footer.insertAdjacentHTML('afterbegin','<p style="color:#91e4b1">Source : FFR Mon Club House · Dernière vérification '+new Date(data.lastChecked).toLocaleString('fr-FR')+'</p>');
+  render();
+ }catch(err){console.warn('FFR indisponible, données locales conservées',err)}
+}
+['team','view','filter','resultsFilter'].forEach(group=>{el(group).querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{if(group==='team')team=b.dataset.value;if(group==='view')view=b.dataset.value;if(group==='filter')filter=b.dataset.value;if(group==='resultsFilter')resultsFilter=b.dataset.value;el(group).querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===b));render()}))});render();loadFFR();
 if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
 </script></body></html>
