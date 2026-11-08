@@ -2,7 +2,7 @@ name: Synchronisation FFR
 on:
   schedule:
     - cron: '15 7,12,19 * * *'
-    - cron: '*/15 12-21 * * 0' # Dimanches de rugby, UTC
+    - cron: '*/5 12-19 * * 0' # Dimanche, heures de match UTC ; GitHub peut retarder l'exécution
   workflow_dispatch:
   push:
     paths:
