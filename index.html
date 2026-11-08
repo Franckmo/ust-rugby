@@ -9,7 +9,7 @@
 <div class="controls" id="team"><button class="active" data-value="seniors">Seniors</button><button data-value="espoirs">Espoirs</button></div>
 <div class="stats"><div class="stat"><b id="rank"></b><small>Classement</small></div><div class="stat"><b id="points"></b><small>Points</small></div><div class="stat"><b id="record"></b><small>Bilan</small></div></div>
 <div class="controls" id="view"><button class="active" data-value="calendar">📅 Calendrier</button><button data-value="standings">🏆 Classement</button><button data-value="results">🏉 Résultats</button></div>
-<div class="source-line" id="sync-status">Données locales de secours · FFR non encore synchronisée <button id="refreshFFR">↻ Vérifier</button></div><section id="calendar"><h2>Prochains matchs</h2><div id="live-panel"></div><p class="notice">Calendrier conservé même si la FFR est indisponible. Les informations non synchronisées sont indicatives.</p>
+<div class="source-line" id="sync-status">Données locales de secours · FFR non encore synchronisée <button id="refreshFFR">↻ Vérifier</button></div><section id="calendar"><h2>Prochains matchs</h2><div id="live-panel"></div><p class="notice"><a href="https://monclubhouse.ffr.fr/nationales/federale-1/calendrier-resultats" target="_blank" rel="noopener">↗ Consulter les scores officiels FFR pendant les matchs</a></p><p class="notice">Calendrier conservé même si la FFR est indisponible. Les informations non synchronisées sont indicatives.</p>
 <div class="controls" id="filter"><button class="active" data-value="all">Tous</button><button data-value="home">🏠 Domicile</button><button data-value="away">✈ Extérieur</button></div><div id="matches"></div></section>
 <section id="results" class="hidden"><h2>Matchs joués</h2><p class="notice">Scores issus de la FFR après synchronisation validée, ou données locales de secours clairement signalées.</p><div class="controls" id="resultsFilter"><button class="active" data-value="all">Tous</button><button data-value="home">🏠 Domicile</button><button data-value="away">✈ Extérieur</button></div><div id="pastMatches"></div></section><section id="standings" class="hidden"><h2>Classement • Poule 1</h2><table><thead><tr><th>#</th><th>Club</th><th>J</th><th>Pts</th></tr></thead><tbody id="rows"></tbody></table></section>
 <footer>Données locales de secours au 8 novembre 2026. Synchronisation officielle FFR utilisée uniquement après validation des données. Horaires et résultats à confirmer auprès du club. Application non officielle.
@@ -60,7 +60,7 @@ async function loadFFR(){
      results[key]=done.map(x=>[x.date,x.home==='Tours'?x.away:x.home,x.home==='Tours',x.homeScore,x.awayScore]).reverse();
     }
     if(upcoming.length){
-     fixturesByTeam[key]=upcoming.map(x=>[x.date,x.home==='Tours'?x.away:x.home,x.home==='Tours',x.time]);
+     const verified=upcoming.map(x=>[x.date,x.home==='Tours'?x.away:x.home,x.home==='Tours',x.time]);const today=new Date().toLocaleDateString('en-CA');const unconfirmedToday=fixturesByTeam[key].filter(x=>x[0]===today&&!all.some(g=>g.date===today&&g.home==='Tours'===x[2]));fixturesByTeam[key]=[...unconfirmedToday,...verified].sort((a,b)=>a[0].localeCompare(b[0]));
     }
    }
   }
