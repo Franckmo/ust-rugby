@@ -1,6 +1,6 @@
 {
   "source": "FFR Mon Club House",
-  "lastChecked": "2026-11-08T15:38:46+00:00",
+  "lastChecked": "2026-11-08T19:03:56+00:00",
   "teams": {
     "seniors": {
       "games": [
@@ -72,9 +72,9 @@
           "time": "15:15",
           "home": "Tours",
           "away": "Montmélian",
-          "status": "live",
-          "homeScore": 33,
-          "awayScore": 13
+          "status": "finished",
+          "homeScore": 43,
+          "awayScore": 18
         },
         {
           "date": "2026-11-15",
@@ -175,17 +175,27 @@
           "status": "scheduled"
         }
       ],
-      "gamesUpdatedAt": "2026-11-08T15:38:46+00:00",
+      "gamesUpdatedAt": "2026-11-08T19:03:56+00:00",
       "standings": [
         {
-          "club": "Saint-Jean-en-Royans",
-          "points": 29,
-          "played": 7
+          "club": "Tours",
+          "points": 33,
+          "played": 8
         },
         {
-          "club": "Tours",
+          "club": "Saint-Jean-en-Royans",
+          "points": 30,
+          "played": 8
+        },
+        {
+          "club": "Issoire",
           "points": 29,
-          "played": 7
+          "played": 8
+        },
+        {
+          "club": "Nuits-Saint-Georges",
+          "points": 28,
+          "played": 8
         },
         {
           "club": "Courbevoie",
@@ -193,39 +203,29 @@
           "played": 8
         },
         {
-          "club": "Nuits-Saint-Georges",
-          "points": 24,
-          "played": 7
+          "club": "Beauvais",
+          "points": 25,
+          "played": 8
         },
         {
           "club": "Montmélian",
           "points": 24,
-          "played": 7
-        },
-        {
-          "club": "Issoire",
-          "points": 24,
-          "played": 7
-        },
-        {
-          "club": "Beauvais",
-          "points": 21,
-          "played": 7
+          "played": 8
         },
         {
           "club": "Saint-Malo",
           "points": 16,
-          "played": 7
+          "played": 8
         },
         {
           "club": "Auxerre",
           "points": 15,
-          "played": 7
+          "played": 8
         },
         {
           "club": "Bièvre Saint-Geoirs",
-          "points": 10,
-          "played": 7
+          "points": 14,
+          "played": 8
         },
         {
           "club": "Paris UC",
@@ -234,11 +234,11 @@
         },
         {
           "club": "Annecy",
-          "points": 4,
-          "played": 7
+          "points": 5,
+          "played": 8
         }
       ],
-      "standingsUpdatedAt": "2026-11-08T15:38:46+00:00"
+      "standingsUpdatedAt": "2026-11-08T19:03:56+00:00"
     },
     "espoirs": {
       "games": [
@@ -413,7 +413,7 @@
           "status": "scheduled"
         }
       ],
-      "gamesUpdatedAt": "2026-11-08T15:38:46+00:00",
+      "gamesUpdatedAt": "2026-11-08T19:03:56+00:00",
       "standings": [
         {
           "club": "Issoire",
