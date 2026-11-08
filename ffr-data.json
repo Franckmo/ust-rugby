@@ -1,6 +1,6 @@
 {
   "source": "FFR Mon Club House",
-  "lastChecked": "2026-11-08T15:02:37+00:00",
+  "lastChecked": "2026-11-08T15:23:48+00:00",
   "teams": {
     "seniors": {
       "games": [
@@ -166,7 +166,7 @@
           "status": "scheduled"
         }
       ],
-      "gamesUpdatedAt": "2026-11-08T15:02:37+00:00",
+      "gamesUpdatedAt": "2026-11-08T15:23:48+00:00",
       "standings": [
         {
           "club": "Saint-Jean-en-Royans",
@@ -229,7 +229,7 @@
           "played": 7
         }
       ],
-      "standingsUpdatedAt": "2026-11-08T15:02:37+00:00"
+      "standingsUpdatedAt": "2026-11-08T15:23:48+00:00"
     },
     "espoirs": {
       "games": [
@@ -404,32 +404,37 @@
           "status": "scheduled"
         }
       ],
-      "gamesUpdatedAt": "2026-11-08T15:02:37+00:00",
+      "gamesUpdatedAt": "2026-11-08T15:23:48+00:00",
       "standings": [
         {
           "club": "Issoire",
-          "points": 33,
-          "played": 7
+          "points": 38,
+          "played": 8
         },
         {
           "club": "Saint-Jean-en-Royans",
-          "points": 28,
-          "played": 7
+          "points": 29,
+          "played": 8
         },
         {
           "club": "Montmélian",
           "points": 28,
-          "played": 7
+          "played": 8
         },
         {
           "club": "Nuits-Saint-Georges",
-          "points": 21,
-          "played": 7
+          "points": 25,
+          "played": 8
         },
         {
           "club": "Saint-Malo",
           "points": 21,
           "played": 7
+        },
+        {
+          "club": "Tours",
+          "points": 18,
+          "played": 8
         },
         {
           "club": "Courbevoie",
@@ -442,11 +447,6 @@
           "played": 7
         },
         {
-          "club": "Tours",
-          "points": 14,
-          "played": 7
-        },
-        {
           "club": "Paris UC",
           "points": 13,
           "played": 8
@@ -454,7 +454,7 @@
         {
           "club": "Auxerre",
           "points": 10,
-          "played": 7
+          "played": 8
         },
         {
           "club": "Annecy",
@@ -467,7 +467,7 @@
           "played": 7
         }
       ],
-      "standingsUpdatedAt": "2026-11-08T15:02:37+00:00"
+      "standingsUpdatedAt": "2026-11-08T15:23:48+00:00"
     }
   }
 }
