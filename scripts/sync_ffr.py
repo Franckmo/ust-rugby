@@ -2,11 +2,11 @@
 """Collecte prudente des données publiques FFR : jamais de résultats supposés."""
 import json, re, sys, datetime
 from pathlib import Path
-import requests
 from bs4 import BeautifulSoup
+from playwright.sync_api import sync_playwright
 
-ROOT = "https://monclubhouse.ffr.fr/competitions"
-CATEGORIES = {"seniors": "federale-1", "espoirs": "espoirs-federaux"}
+ROOT = "https://monclubhouse.ffr.fr"
+CATEGORIES = {"seniors": "nationales/federale-1", "espoirs": "competitions/espoirs-federaux"}
 NAMES = {
  "US Tours":"Tours", "SC Royannais":"Saint-Jean-en-Royans",
  "US Montmelianaise":"Montmélian", "CS Nuiton":"Nuits-Saint-Georges",
@@ -18,13 +18,20 @@ NAMES = {
 CLUBS = sorted(NAMES, key=len, reverse=True)
 C = "(?:"+"|".join(re.escape(x) for x in CLUBS)+")"
 GAME = re.compile(r"(\d{2}/\d{2}/20(?:26|27))\s+(\d{2}:\d{2})\s+("+C+r")\s+(?:(\d{1,3})\s*[-–]\s*(\d{1,3})\s+Terminé\s+)?("+C+r")")
-SESSION = requests.Session()
-SESSION.headers.update({"User-Agent":"Mozilla/5.0 (compatible; USTRugbyStatus/1.0; contact: repository Franckmo/ust-rugby)"})
-def get(url):
- r=SESSION.get(url,timeout=35)
- r.raise_for_status()
- if len(r.content)<3000: raise RuntimeError("Page FFR incomplète")
- return BeautifulSoup(r.text,"html.parser")
+def get(browser,url):
+ page=browser.new_page(locale="fr-FR")
+ try:
+  page.goto(url,wait_until="domcontentloaded",timeout=45000)
+  page.wait_for_timeout(2500)
+  # Le site FFR hydrate ses compétitions côté navigateur.
+  for attempt in range(5):
+   content=page.content()
+   if "US Tours" in content and ("Journée" in content or "PTS" in content):
+    return BeautifulSoup(content,"html.parser")
+   page.wait_for_timeout(1500)
+  raise RuntimeError("La FFR n'a pas chargé les données du championnat")
+ finally:
+  page.close()
 def collect_games(html):
  # Les pages publiques affichent toutes les journées et la mention « Terminé » pour les résultats validés.
  text=" ".join(html.stripped_strings)
@@ -62,30 +69,35 @@ def main():
   except (OSError,ValueError): pass
  out={"source":"FFR Mon Club House","lastChecked":datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),"teams":{}}
  errors=[]
- for team,slug in CATEGORIES.items():
-  previous=old.get("teams",{}).get(team,{})
-  group=dict(previous)
-  try:
-   games=collect_games(get(f"{ROOT}/{slug}/calendrier-resultats"))
-   # Protection : ne pas remplacer des résultats fiables par une page vide/partielle.
-   if len(games)<7 or len([x for x in games if x["status"]=="finished"])<3:
-    raise ValueError(f"Calendrier incomplet : {len(games)} matchs")
-   prior={(x["date"],x["home"],x["away"]):x for x in previous.get("games",[])}
-   for g in games:
-    key=(g["date"],g["home"],g["away"])
-    if g["status"]!="finished" and prior.get(key,{}).get("status")=="finished":
-     g=prior[key]
-    prior[key]=g
-   group["games"]=sorted(prior.values(),key=lambda x:(x["date"],x.get("time","")))
-   group["gamesUpdatedAt"]=out["lastChecked"]
-  except Exception as exc: errors.append(f"{team} calendrier: {exc}")
-  try:
-   ranking=collect_standings(get(f"{ROOT}/{slug}/classements"))
-   if not ranking: raise ValueError("Classement incomplet (attendu 12 équipes)")
-   group["standings"]=ranking
-   group["standingsUpdatedAt"]=out["lastChecked"]
-  except Exception as exc: errors.append(f"{team} classement: {exc}")
-  out["teams"][team]=group
+ with sync_playwright() as playwright:
+  browser=playwright.chromium.launch(headless=True)
+  for team,slug in CATEGORIES.items():
+   previous=old.get("teams",{}).get(team,{})
+   group=dict(previous)
+   try:
+    games=collect_games(get(browser,f"{ROOT}/{slug}/calendrier-resultats"))
+    # Chaque source doit fournir suffisamment de rencontres et de résultats vérifiés.
+    if len(games)<7 or len([x for x in games if x["status"]=="finished"])<3:
+     raise ValueError(f"Calendrier incomplet : {len(games)} matchs")
+    prior={(x["date"],x["home"],x["away"]):x for x in previous.get("games",[])}
+    for g in games:
+     key=(g["date"],g["home"],g["away"])
+     if g["status"]!="finished" and prior.get(key,{}).get("status")=="finished":g=prior[key]
+     prior[key]=g
+    group["games"]=sorted(prior.values(),key=lambda x:(x["date"],x.get("time","")))
+    group["gamesUpdatedAt"]=out["lastChecked"]
+   except Exception as exc:errors.append(f"{team} calendrier: {exc}")
+   try:
+    ranking=collect_standings(get(browser,f"{ROOT}/{slug}/classements"))
+    if not ranking:raise ValueError("Classement incomplet (attendu 12 équipes)")
+    prior_played=next((x["played"] for x in previous.get("standings",[]) if x["club"]=="Tours"),0)
+    new_played=next((x["played"] for x in ranking if x["club"]=="Tours"),0)
+    if new_played<prior_played:raise ValueError("Classement plus ancien que le dernier connu")
+    group["standings"]=ranking
+    group["standingsUpdatedAt"]=out["lastChecked"]
+   except Exception as exc:errors.append(f"{team} classement: {exc}")
+   out["teams"][team]=group
+  browser.close()
  # Ne pas écrire un fichier vide ou un état qui dégrade les données existantes.
  usable=all(t.get("games") or t.get("standings") for t in out["teams"].values())
  if not usable:
