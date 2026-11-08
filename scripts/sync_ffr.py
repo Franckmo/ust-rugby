@@ -17,7 +17,7 @@ NAMES = {
 }
 CLUBS = sorted(NAMES, key=len, reverse=True)
 C = "(?:"+"|".join(re.escape(x) for x in CLUBS)+")"
-GAME = re.compile(r"(\d{2}/\d{2}/20(?:26|27))\s+(\d{2}:\d{2})\s+("+C+r")\s+(?:(\d{1,3})\s*[-–]\s*(\d{1,3})\s+Terminé\s+)?("+C+r")")
+GAME = re.compile(r"(\d{2}/\d{2}/20(?:26|27))\s+(\d{2}:\d{2})\s+("+C+r")\s+(?:(\d{1,3})\s*[-–]\s*(\d{1,3})\s+(Terminé|En cours|Mi-temps|En direct)\s+)?("+C+r")")
 def get(browser,url):
  page=browser.new_page(locale="fr-FR")
  try:
@@ -38,10 +38,10 @@ def collect_games(html):
  text=re.sub(r"\s+"," ",text)
  matches={}
  for m in GAME.finditer(text):
-  date,hour,home,hs,aw,away=m.groups()
+  date,hour,home,hs,aw,match_status,away=m.groups()
   iso=datetime.datetime.strptime(date+" "+hour,"%d/%m/%Y %H:%M").isoformat(timespec="minutes")
   if home!="US Tours" and away!="US Tours": continue
-  game={"date":iso[:10],"time":hour,"home":NAMES[home],"away":NAMES[away],"status":"finished" if hs is not None else "scheduled"}
+  game={"date":iso[:10],"time":hour,"home":NAMES[home],"away":NAMES[away],"status":("finished" if match_status=="Terminé" else "live" if match_status in ("En cours","Mi-temps","En direct") else "scheduled")}
   if hs is not None: game.update({"homeScore":int(hs),"awayScore":int(aw)})
   matches[(iso,home,away)]=game
  return sorted(matches.values(),key=lambda x:(x["date"],x["time"]))
