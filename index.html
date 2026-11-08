@@ -44,7 +44,7 @@ el('matches').innerHTML=fixturesByTeam[team].filter(x=>(filter==='all'||(filter=
  const d=new Date(x[0]+'T12:00:00'),day=d.getDate(),month=d.toLocaleString('fr-FR',{month:'short'}),left=x[2]?'Tours':x[1],right=x[2]?x[1]:'Tours';
  const official=officialGames[team].find(g=>g.date===x[0]&&g.home===left&&g.away===right);
  const today=x[0]===new Date().toLocaleDateString('en-CA');
- const fresh=lastFFRCheck&&(Date.now()-new Date(lastFFRCheck).getTime())<30*60*1000;
+ const fresh=lastFFRCheck&&Number.isFinite(new Date(lastFFRCheck).getTime())&&(Date.now()-new Date(lastFFRCheck).getTime())<15*60*1000;
  let status='';
  if(official?.status==='live'){
   const label=fresh?'● EN DIRECT FFR':'● DERNIER SCORE CONNU · à confirmer';
@@ -89,7 +89,9 @@ async function loadFFR(manual=false){
   lastFFRCheck=data.lastChecked;const stamp=new Date(lastFFRCheck);
   const checkedAt=new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
   const changed=before!==lastFFRCheck;
-  el('sync-status').firstChild.textContent=(manual&&!changed?'Aucun nouveau relevé FFR · ':'Données FFR · ')+'source du '+stamp.toLocaleString('fr-FR')+' · consultée à '+checkedAt+' ';
+  const age=Math.max(0,Date.now()-stamp.getTime());
+  const freshness=age>15*60*1000?'⚠ Données anciennes ('+Math.round(age/60000)+' min) · ':'';
+  el('sync-status').firstChild.textContent=freshness+(manual&&!changed?'Aucun nouveau relevé FFR · ':'Données FFR · ')+'source du '+stamp.toLocaleString('fr-FR')+' · consultée à '+checkedAt+' ';
   render();
  }catch(err){console.warn('FFR indisponible, données locales conservées',err);if(manual)el('sync-status').firstChild.textContent='Impossible de consulter la FFR · données précédentes conservées ';}
  finally{loadingFFR=false;if(btn){btn.disabled=false;btn.textContent='↻ Recharger les données'}}
