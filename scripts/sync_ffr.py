@@ -2,6 +2,7 @@
 """Collecte prudente des données publiques FFR : jamais de résultats supposés."""
 import json, re, sys, datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
 from bs4 import BeautifulSoup
 from playwright.sync_api import sync_playwright
 
@@ -33,23 +34,37 @@ def get(browser,url):
  finally:
   page.close()
 def collect_live(browser):
+ """Lire uniquement les scores explicitement marqués En direct, sans les déduire de l'heure."""
  page=browser.new_page(locale="fr-FR")
  try:
   page.goto(ROOT+"/rugby-direct",wait_until="domcontentloaded",timeout=45000)
   page.wait_for_timeout(1500)
-  try:page.get_by_text("Tous les matchs",exact=True).first.click(timeout=6000)
-  except Exception as e:print("onglet absent",str(e)[:150])
+  page.get_by_text("Tous les matchs",exact=True).first.click(timeout=6000)
+  page.wait_for_timeout(1500)
+  # Déplier les catégories et la Fédérale 1, invisibles à l'ouverture.
+  for label in ("Compétitions Nationales","Fédérale 1","Espoirs Fédéraux"):
+   try:page.get_by_text(label,exact=True).first.click(timeout=2000)
+   except Exception:pass
   page.wait_for_timeout(2000)
-  try: page.get_by_text("Compétitions Nationales",exact=True).first.click(timeout=4000)
-  except Exception as e: print("nationales click",str(e)[:100])
-  page.wait_for_timeout(1000)
-  try: page.get_by_text("Fédérale 1",exact=True).first.click(timeout=4000)
-  except Exception as e: print("F1 click",str(e)[:100])
-  page.wait_for_timeout(2500)
   text=" ".join(page.locator("body").inner_text().split())
-  ix=text.find("US Tours")
-  print("LIVE DIAGNOSTIC: len",len(text),"Tours position",ix,"snippet",text[max(0,ix-450):ix+650] if ix>=0 else text[:1200])
-  return []
+  found={"seniors":[],"espoirs":[]}
+  pattern=re.compile(r"En direct\s+("+C+r")\s+(\d{1,3})\s*[-–]\s*(\d{1,3})\s+("+C+r")")
+  today=datetime.datetime.now(ZoneInfo("Europe/Paris")).date().isoformat()
+  for match in pattern.finditer(text):
+   home,home_score,away_score,away=match.groups()
+   if home!="US Tours" and away!="US Tours":continue
+   before=text[:match.start()]
+   senior=before.rfind("Fédérale 1 Qualification")
+   espoir=before.rfind("Espoirs Fédéraux Qualification")
+   if senior<0 and espoir<0:continue
+   team="seniors" if senior>espoir else "espoirs"
+   found[team].append({
+    "date":today,"time":"15:15" if team=="seniors" else "13:30",
+    "home":NAMES[home],"away":NAMES[away],"status":"live",
+    "homeScore":int(home_score),"awayScore":int(away_score)
+   })
+  print("FFR DIRECT:",{k:[f"{g['home']} {g['homeScore']}-{g['awayScore']} {g['away']}" for g in v] for k,v in found.items()})
+  return found
  finally:
   page.close()
 
@@ -92,7 +107,8 @@ def main():
  errors=[]
  with sync_playwright() as playwright:
   browser=playwright.chromium.launch(headless=True)
-  try: collect_live(browser)
+  live={"seniors":[],"espoirs":[]}
+  try: live=collect_live(browser)
   except Exception as exc:print('DIRECT non accessible:',str(exc))
   for team,slug in CATEGORIES.items():
    previous=old.get("teams",{}).get(team,{})
@@ -107,6 +123,10 @@ def main():
      key=(g["date"],g["home"],g["away"])
      if g["status"]!="finished" and prior.get(key,{}).get("status")=="finished":g=prior[key]
      prior[key]=g
+    for live_game in live[team]:
+     key=(live_game["date"],live_game["home"],live_game["away"])
+     if prior.get(key,{}).get("status")!="finished":
+      prior[key]=dict(prior.get(key,{}),**live_game)
     group["games"]=sorted(prior.values(),key=lambda x:(x["date"],x.get("time","")))
     group["gamesUpdatedAt"]=out["lastChecked"]
    except Exception as exc:errors.append(f"{team} calendrier: {exc}")
