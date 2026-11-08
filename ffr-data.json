@@ -1,0 +1,473 @@
+{
+  "source": "FFR Mon Club House",
+  "lastChecked": "2026-11-08T15:02:37+00:00",
+  "teams": {
+    "seniors": {
+      "games": [
+        {
+          "date": "2026-09-05",
+          "time": "19:00",
+          "home": "Annecy",
+          "away": "Tours",
+          "status": "finished",
+          "homeScore": 9,
+          "awayScore": 31
+        },
+        {
+          "date": "2026-09-13",
+          "time": "15:15",
+          "home": "Tours",
+          "away": "Nuits-Saint-Georges",
+          "status": "finished",
+          "homeScore": 50,
+          "awayScore": 14
+        },
+        {
+          "date": "2026-09-20",
+          "time": "15:15",
+          "home": "Saint-Malo",
+          "away": "Tours",
+          "status": "finished",
+          "homeScore": 13,
+          "awayScore": 26
+        },
+        {
+          "date": "2026-10-03",
+          "time": "17:00",
+          "home": "Tours",
+          "away": "Issoire",
+          "status": "finished",
+          "homeScore": 28,
+          "awayScore": 25
+        },
+        {
+          "date": "2026-10-11",
+          "time": "15:15",
+          "home": "Auxerre",
+          "away": "Tours",
+          "status": "finished",
+          "homeScore": 35,
+          "awayScore": 43
+        },
+        {
+          "date": "2026-10-18",
+          "time": "15:15",
+          "home": "Tours",
+          "away": "Beauvais",
+          "status": "finished",
+          "homeScore": 37,
+          "awayScore": 38
+        },
+        {
+          "date": "2026-11-01",
+          "time": "15:15",
+          "home": "Saint-Jean-en-Royans",
+          "away": "Tours",
+          "status": "finished",
+          "homeScore": 27,
+          "awayScore": 35
+        },
+        {
+          "date": "2026-11-15",
+          "time": "15:15",
+          "home": "Courbevoie",
+          "away": "Tours",
+          "status": "scheduled"
+        },
+        {
+          "date": "2026-11-29",
+          "time": "15:15",
+          "home": "Tours",
+          "away": "Bièvre Saint-Geoirs",
+          "status": "scheduled"
+        },
+        {
+          "date": "2026-12-06",
+          "time": "15:15",
+          "home": "Paris UC",
+          "away": "Tours",
+          "status": "scheduled"
+        },
+        {
+          "date": "2026-12-13",
+          "time": "15:15",
+          "home": "Tours",
+          "away": "Annecy",
+          "status": "scheduled"
+        },
+        {
+          "date": "2027-01-10",
+          "time": "15:15",
+          "home": "Nuits-Saint-Georges",
+          "away": "Tours",
+          "status": "scheduled"
+        },
+        {
+          "date": "2027-01-17",
+          "time": "15:15",
+          "home": "Tours",
+          "away": "Saint-Malo",
+          "status": "scheduled"
+        },
+        {
+          "date": "2027-01-31",
+          "time": "15:15",
+          "home": "Issoire",
+          "away": "Tours",
+          "status": "scheduled"
+        },
+        {
+          "date": "2027-02-07",
+          "time": "15:15",
+          "home": "Tours",
+          "away": "Auxerre",
+          "status": "scheduled"
+        },
+        {
+          "date": "2027-02-14",
+          "time": "15:15",
+          "home": "Beauvais",
+          "away": "Tours",
+          "status": "scheduled"
+        },
+        {
+          "date": "2027-02-28",
+          "time": "15:15",
+          "home": "Tours",
+          "away": "Saint-Jean-en-Royans",
+          "status": "scheduled"
+        },
+        {
+          "date": "2027-03-07",
+          "time": "15:15",
+          "home": "Montmélian",
+          "away": "Tours",
+          "status": "scheduled"
+        },
+        {
+          "date": "2027-03-21",
+          "time": "15:15",
+          "home": "Tours",
+          "away": "Courbevoie",
+          "status": "scheduled"
+        },
+        {
+          "date": "2027-03-28",
+          "time": "15:15",
+          "home": "Bièvre Saint-Geoirs",
+          "away": "Tours",
+          "status": "scheduled"
+        },
+        {
+          "date": "2027-04-11",
+          "time": "15:15",
+          "home": "Tours",
+          "away": "Paris UC",
+          "status": "scheduled"
+        }
+      ],
+      "gamesUpdatedAt": "2026-11-08T15:02:37+00:00",
+      "standings": [
+        {
+          "club": "Saint-Jean-en-Royans",
+          "points": 29,
+          "played": 7
+        },
+        {
+          "club": "Tours",
+          "points": 29,
+          "played": 7
+        },
+        {
+          "club": "Courbevoie",
+          "points": 26,
+          "played": 8
+        },
+        {
+          "club": "Nuits-Saint-Georges",
+          "points": 24,
+          "played": 7
+        },
+        {
+          "club": "Montmélian",
+          "points": 24,
+          "played": 7
+        },
+        {
+          "club": "Issoire",
+          "points": 24,
+          "played": 7
+        },
+        {
+          "club": "Beauvais",
+          "points": 21,
+          "played": 7
+        },
+        {
+          "club": "Saint-Malo",
+          "points": 16,
+          "played": 7
+        },
+        {
+          "club": "Auxerre",
+          "points": 15,
+          "played": 7
+        },
+        {
+          "club": "Bièvre Saint-Geoirs",
+          "points": 10,
+          "played": 7
+        },
+        {
+          "club": "Paris UC",
+          "points": 10,
+          "played": 8
+        },
+        {
+          "club": "Annecy",
+          "points": 4,
+          "played": 7
+        }
+      ],
+      "standingsUpdatedAt": "2026-11-08T15:02:37+00:00"
+    },
+    "espoirs": {
+      "games": [
+        {
+          "date": "2026-09-05",
+          "time": "17:15",
+          "home": "Annecy",
+          "away": "Tours",
+          "status": "finished",
+          "homeScore": 39,
+          "awayScore": 40
+        },
+        {
+          "date": "2026-09-13",
+          "time": "13:30",
+          "home": "Tours",
+          "away": "Nuits-Saint-Georges",
+          "status": "finished",
+          "homeScore": 13,
+          "awayScore": 15
+        },
+        {
+          "date": "2026-09-20",
+          "time": "13:30",
+          "home": "Saint-Malo",
+          "away": "Tours",
+          "status": "finished",
+          "homeScore": 38,
+          "awayScore": 14
+        },
+        {
+          "date": "2026-10-03",
+          "time": "15:15",
+          "home": "Tours",
+          "away": "Issoire",
+          "status": "finished",
+          "homeScore": 15,
+          "awayScore": 36
+        },
+        {
+          "date": "2026-10-11",
+          "time": "13:30",
+          "home": "Auxerre",
+          "away": "Tours",
+          "status": "finished",
+          "homeScore": 19,
+          "awayScore": 20
+        },
+        {
+          "date": "2026-10-18",
+          "time": "13:30",
+          "home": "Tours",
+          "away": "Beauvais",
+          "status": "finished",
+          "homeScore": 30,
+          "awayScore": 7
+        },
+        {
+          "date": "2026-11-01",
+          "time": "13:30",
+          "home": "Saint-Jean-en-Royans",
+          "away": "Tours",
+          "status": "finished",
+          "homeScore": 29,
+          "awayScore": 17
+        },
+        {
+          "date": "2026-11-08",
+          "time": "13:30",
+          "home": "Tours",
+          "away": "Montmélian",
+          "status": "finished",
+          "homeScore": 24,
+          "awayScore": 10
+        },
+        {
+          "date": "2026-11-15",
+          "time": "13:30",
+          "home": "Courbevoie",
+          "away": "Tours",
+          "status": "scheduled"
+        },
+        {
+          "date": "2026-11-29",
+          "time": "13:30",
+          "home": "Tours",
+          "away": "Bièvre Saint-Geoirs",
+          "status": "scheduled"
+        },
+        {
+          "date": "2026-12-06",
+          "time": "13:30",
+          "home": "Paris UC",
+          "away": "Tours",
+          "status": "scheduled"
+        },
+        {
+          "date": "2026-12-13",
+          "time": "13:30",
+          "home": "Tours",
+          "away": "Annecy",
+          "status": "scheduled"
+        },
+        {
+          "date": "2027-01-10",
+          "time": "13:30",
+          "home": "Nuits-Saint-Georges",
+          "away": "Tours",
+          "status": "scheduled"
+        },
+        {
+          "date": "2027-01-17",
+          "time": "13:30",
+          "home": "Tours",
+          "away": "Saint-Malo",
+          "status": "scheduled"
+        },
+        {
+          "date": "2027-01-31",
+          "time": "13:30",
+          "home": "Issoire",
+          "away": "Tours",
+          "status": "scheduled"
+        },
+        {
+          "date": "2027-02-07",
+          "time": "13:30",
+          "home": "Tours",
+          "away": "Auxerre",
+          "status": "scheduled"
+        },
+        {
+          "date": "2027-02-14",
+          "time": "13:30",
+          "home": "Beauvais",
+          "away": "Tours",
+          "status": "scheduled"
+        },
+        {
+          "date": "2027-02-28",
+          "time": "13:30",
+          "home": "Tours",
+          "away": "Saint-Jean-en-Royans",
+          "status": "scheduled"
+        },
+        {
+          "date": "2027-03-07",
+          "time": "13:30",
+          "home": "Montmélian",
+          "away": "Tours",
+          "status": "scheduled"
+        },
+        {
+          "date": "2027-03-21",
+          "time": "13:30",
+          "home": "Tours",
+          "away": "Courbevoie",
+          "status": "scheduled"
+        },
+        {
+          "date": "2027-03-28",
+          "time": "13:30",
+          "home": "Bièvre Saint-Geoirs",
+          "away": "Tours",
+          "status": "scheduled"
+        },
+        {
+          "date": "2027-04-11",
+          "time": "13:30",
+          "home": "Tours",
+          "away": "Paris UC",
+          "status": "scheduled"
+        }
+      ],
+      "gamesUpdatedAt": "2026-11-08T15:02:37+00:00",
+      "standings": [
+        {
+          "club": "Issoire",
+          "points": 33,
+          "played": 7
+        },
+        {
+          "club": "Saint-Jean-en-Royans",
+          "points": 28,
+          "played": 7
+        },
+        {
+          "club": "Montmélian",
+          "points": 28,
+          "played": 7
+        },
+        {
+          "club": "Nuits-Saint-Georges",
+          "points": 21,
+          "played": 7
+        },
+        {
+          "club": "Saint-Malo",
+          "points": 21,
+          "played": 7
+        },
+        {
+          "club": "Courbevoie",
+          "points": 17,
+          "played": 8
+        },
+        {
+          "club": "Beauvais",
+          "points": 16,
+          "played": 7
+        },
+        {
+          "club": "Tours",
+          "points": 14,
+          "played": 7
+        },
+        {
+          "club": "Paris UC",
+          "points": 13,
+          "played": 8
+        },
+        {
+          "club": "Auxerre",
+          "points": 10,
+          "played": 7
+        },
+        {
+          "club": "Annecy",
+          "points": 4,
+          "played": 7
+        },
+        {
+          "club": "Bièvre Saint-Geoirs",
+          "points": 2,
+          "played": 7
+        }
+      ],
+      "standingsUpdatedAt": "2026-11-08T15:02:37+00:00"
+    }
+  }
+}
