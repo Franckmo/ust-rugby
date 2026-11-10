@@ -1,6 +1,6 @@
 {
   "source": "FFR Mon Club House",
-  "lastChecked": "2026-11-10T02:08:16+00:00",
+  "lastChecked": "2026-11-10T15:35:25+00:00",
   "teams": {
     "seniors": {
       "games": [
@@ -175,7 +175,7 @@
           "status": "scheduled"
         }
       ],
-      "gamesUpdatedAt": "2026-11-10T02:08:16+00:00",
+      "gamesUpdatedAt": "2026-11-10T15:35:25+00:00",
       "standings": [
         {
           "club": "Tours",
@@ -238,7 +238,7 @@
           "played": 8
         }
       ],
-      "standingsUpdatedAt": "2026-11-10T02:08:16+00:00"
+      "standingsUpdatedAt": "2026-11-10T15:35:25+00:00"
     },
     "espoirs": {
       "games": [
@@ -413,7 +413,7 @@
           "status": "scheduled"
         }
       ],
-      "gamesUpdatedAt": "2026-11-10T02:08:16+00:00",
+      "gamesUpdatedAt": "2026-11-10T15:35:25+00:00",
       "standings": [
         {
           "club": "Issoire",
@@ -476,7 +476,7 @@
           "played": 8
         }
       ],
-      "standingsUpdatedAt": "2026-11-10T02:08:16+00:00"
+      "standingsUpdatedAt": "2026-11-10T15:35:25+00:00"
     }
   }
 }
