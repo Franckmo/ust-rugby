@@ -1,6 +1,6 @@
 {
   "source": "FFR Mon Club House",
-  "lastChecked": "2026-11-15T17:31:20+00:00",
+  "lastChecked": "2026-11-15T17:45:57+00:00",
   "teams": {
     "seniors": {
       "games": [
@@ -177,7 +177,7 @@
           "status": "scheduled"
         }
       ],
-      "gamesUpdatedAt": "2026-11-15T17:31:20+00:00",
+      "gamesUpdatedAt": "2026-11-15T17:45:57+00:00",
       "standings": [
         {
           "club": "Saint-Jean-en-Royans",
@@ -186,8 +186,13 @@
         },
         {
           "club": "Tours",
-          "points": 33,
-          "played": 8
+          "points": 34,
+          "played": 9
+        },
+        {
+          "club": "Courbevoie",
+          "points": 30,
+          "played": 9
         },
         {
           "club": "Beauvais",
@@ -210,9 +215,9 @@
           "played": 9
         },
         {
-          "club": "Courbevoie",
-          "points": 26,
-          "played": 8
+          "club": "Bièvre Saint-Geoirs",
+          "points": 19,
+          "played": 9
         },
         {
           "club": "Auxerre",
@@ -225,14 +230,9 @@
           "played": 9
         },
         {
-          "club": "Bièvre Saint-Geoirs",
-          "points": 14,
-          "played": 8
-        },
-        {
           "club": "Paris UC",
           "points": 10,
-          "played": 8
+          "played": 9
         },
         {
           "club": "Annecy",
@@ -240,7 +240,7 @@
           "played": 9
         }
       ],
-      "standingsUpdatedAt": "2026-11-15T17:31:20+00:00"
+      "standingsUpdatedAt": "2026-11-15T17:45:57+00:00"
     },
     "espoirs": {
       "games": [
@@ -417,7 +417,7 @@
           "status": "scheduled"
         }
       ],
-      "gamesUpdatedAt": "2026-11-15T17:31:20+00:00",
+      "gamesUpdatedAt": "2026-11-15T17:45:57+00:00",
       "standings": [
         {
           "club": "Issoire",
@@ -480,7 +480,7 @@
           "played": 9
         }
       ],
-      "standingsUpdatedAt": "2026-11-15T17:31:20+00:00"
+      "standingsUpdatedAt": "2026-11-15T17:45:57+00:00"
     }
   }
 }
