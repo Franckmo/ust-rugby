@@ -1,6 +1,6 @@
 {
   "source": "FFR Mon Club House",
-  "lastChecked": "2026-11-15T14:45:02+00:00",
+  "lastChecked": "2026-11-15T15:53:16+00:00",
   "teams": {
     "seniors": {
       "games": [
@@ -82,8 +82,8 @@
           "home": "Courbevoie",
           "away": "Tours",
           "status": "live",
-          "homeScore": 7,
-          "awayScore": 3
+          "homeScore": 19,
+          "awayScore": 10
         },
         {
           "date": "2026-11-29",
@@ -177,7 +177,7 @@
           "status": "scheduled"
         }
       ],
-      "gamesUpdatedAt": "2026-11-15T14:45:02+00:00",
+      "gamesUpdatedAt": "2026-11-15T15:53:16+00:00",
       "standings": [
         {
           "club": "Saint-Jean-en-Royans",
@@ -240,7 +240,7 @@
           "played": 8
         }
       ],
-      "standingsUpdatedAt": "2026-11-15T14:45:02+00:00"
+      "standingsUpdatedAt": "2026-11-15T15:53:16+00:00"
     },
     "espoirs": {
       "games": [
@@ -321,7 +321,7 @@
           "time": "13:30",
           "home": "Courbevoie",
           "away": "Tours",
-          "status": "live",
+          "status": "finished",
           "homeScore": 10,
           "awayScore": 5
         },
@@ -417,12 +417,12 @@
           "status": "scheduled"
         }
       ],
-      "gamesUpdatedAt": "2026-11-15T14:45:02+00:00",
+      "gamesUpdatedAt": "2026-11-15T15:53:16+00:00",
       "standings": [
         {
           "club": "Issoire",
-          "points": 38,
-          "played": 8
+          "points": 43,
+          "played": 9
         },
         {
           "club": "Saint-Jean-en-Royans",
@@ -431,8 +431,8 @@
         },
         {
           "club": "Montmélian",
-          "points": 28,
-          "played": 8
+          "points": 33,
+          "played": 9
         },
         {
           "club": "Saint-Malo",
@@ -442,45 +442,45 @@
         {
           "club": "Nuits-Saint-Georges",
           "points": 25,
-          "played": 8
-        },
-        {
-          "club": "Tours",
-          "points": 18,
-          "played": 8
+          "played": 9
         },
         {
           "club": "Courbevoie",
-          "points": 17,
-          "played": 8
+          "points": 21,
+          "played": 9
+        },
+        {
+          "club": "Tours",
+          "points": 19,
+          "played": 9
         },
         {
           "club": "Beauvais",
           "points": 16,
-          "played": 8
+          "played": 9
         },
         {
           "club": "Paris UC",
           "points": 13,
-          "played": 8
+          "played": 9
+        },
+        {
+          "club": "Annecy",
+          "points": 13,
+          "played": 9
         },
         {
           "club": "Auxerre",
           "points": 10,
-          "played": 8
-        },
-        {
-          "club": "Annecy",
-          "points": 8,
-          "played": 8
+          "played": 9
         },
         {
           "club": "Bièvre Saint-Geoirs",
-          "points": 3,
-          "played": 8
+          "points": 8,
+          "played": 9
         }
       ],
-      "standingsUpdatedAt": "2026-11-15T14:45:02+00:00"
+      "standingsUpdatedAt": "2026-11-15T15:53:16+00:00"
     }
   }
 }
