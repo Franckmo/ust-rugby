@@ -92,3 +92,11 @@ PWA installée sur Android / navigateur desktop
 - Inspection de l'historique GitHub Actions : aucune exécution du workflow FFR le dimanche 15/11 avant 15h02, malgré un cron configuré pour des lancements fréquents. Les exécutions planifiées du 14/11 fonctionnaient, mais **la planification GitHub n'est pas suffisamment fiable pour garantir le direct**.
 - Collecte relancée via un commit sur `scripts/sync_ffr.py` (workflow `43722102046`) : succès, logs attestant **FFR DIRECT: Espoirs Courbevoie 10–5 Tours** à 15h02, 15/11/2026 (score provisoire). `ffr-data.json` mis à jour à `2026-11-15T14:02:21Z`, Pages publié avec succès.
 - Le problème n'est pas l'extraction des scores FFR mais le **déclenchement automatique irrégulier des workflows planifiés**. Une solution de scheduling externe fiable, adaptée à la sécurité et au coût, reste à étudier si un vrai quasi-direct toutes les 5 minutes est indispensable. Ne pas promettre 5 minutes garanties avec GitHub Actions schedule.
+
+## Mise en place de l'ordonnanceur externe — 15 novembre 2026
+
+- **Solution choisie** : cron-job.org (tâche HTTP POST toutes les 5 minutes le dimanche, fuseau Europe/Paris) → API GitHub `workflow_dispatch` → workflow existant `sync-ffr.yml` → `ffr-data.json` → GitHub Pages.
+- **Documentation prête à l'emploi** : [SYNCHRONISATION-EXTERNE.md](./SYNCHRONISATION-EXTERNE.md). Le workflow supporte déjà `workflow_dispatch`, aucune modification du moteur PWA n'est nécessaire.
+- **État réel** : configuration GitHub/documentation prête ; **création du compte cron-job.org et du jeton GitHub finement limité restent à effectuer par le propriétaire**. **Ne pas prétendre que la tâche externe tourne tant que son exécution n'a pas été vérifiée**.
+- **Sécurité** : jamais de jeton dans Git, dans le chat ou dans un lien public. Le prestataire cron-job.org conservera le jeton en en-tête HTTP ; limiter les droits à `ust-rugby` avec permission Actions write.
+- **Critère d'acceptation** : au moins trois exécutions automatiques réussies à cinq minutes d'intervalle avec données FFR fraîches publiées.
