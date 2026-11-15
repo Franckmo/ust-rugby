@@ -1,6 +1,6 @@
 {
   "source": "FFR Mon Club House",
-  "lastChecked": "2026-11-15T17:05:51+00:00",
+  "lastChecked": "2026-11-15T17:15:59+00:00",
   "teams": {
     "seniors": {
       "games": [
@@ -177,7 +177,7 @@
           "status": "scheduled"
         }
       ],
-      "gamesUpdatedAt": "2026-11-15T17:05:51+00:00",
+      "gamesUpdatedAt": "2026-11-15T17:15:59+00:00",
       "standings": [
         {
           "club": "Saint-Jean-en-Royans",
@@ -190,14 +190,24 @@
           "played": 8
         },
         {
+          "club": "Beauvais",
+          "points": 29,
+          "played": 9
+        },
+        {
+          "club": "Montmélian",
+          "points": 29,
+          "played": 9
+        },
+        {
           "club": "Issoire",
           "points": 29,
-          "played": 8
+          "played": 9
         },
         {
           "club": "Nuits-Saint-Georges",
           "points": 28,
-          "played": 8
+          "played": 9
         },
         {
           "club": "Courbevoie",
@@ -205,24 +215,14 @@
           "played": 8
         },
         {
-          "club": "Beauvais",
-          "points": 25,
-          "played": 8
-        },
-        {
-          "club": "Montmélian",
-          "points": 24,
-          "played": 8
+          "club": "Auxerre",
+          "points": 19,
+          "played": 9
         },
         {
           "club": "Saint-Malo",
           "points": 16,
           "played": 9
-        },
-        {
-          "club": "Auxerre",
-          "points": 15,
-          "played": 8
         },
         {
           "club": "Bièvre Saint-Geoirs",
@@ -236,11 +236,11 @@
         },
         {
           "club": "Annecy",
-          "points": 5,
-          "played": 8
+          "points": 6,
+          "played": 9
         }
       ],
-      "standingsUpdatedAt": "2026-11-15T17:05:51+00:00"
+      "standingsUpdatedAt": "2026-11-15T17:15:59+00:00"
     },
     "espoirs": {
       "games": [
@@ -417,7 +417,7 @@
           "status": "scheduled"
         }
       ],
-      "gamesUpdatedAt": "2026-11-15T17:05:51+00:00",
+      "gamesUpdatedAt": "2026-11-15T17:15:59+00:00",
       "standings": [
         {
           "club": "Issoire",
@@ -480,7 +480,7 @@
           "played": 9
         }
       ],
-      "standingsUpdatedAt": "2026-11-15T17:05:51+00:00"
+      "standingsUpdatedAt": "2026-11-15T17:15:59+00:00"
     }
   }
 }
