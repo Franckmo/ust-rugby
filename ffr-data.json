@@ -1,6 +1,6 @@
 {
   "source": "FFR Mon Club House",
-  "lastChecked": "2026-11-14T22:58:41+00:00",
+  "lastChecked": "2026-11-15T14:02:21+00:00",
   "teams": {
     "seniors": {
       "games": [
@@ -175,16 +175,16 @@
           "status": "scheduled"
         }
       ],
-      "gamesUpdatedAt": "2026-11-14T22:58:41+00:00",
+      "gamesUpdatedAt": "2026-11-15T14:02:21+00:00",
       "standings": [
+        {
+          "club": "Saint-Jean-en-Royans",
+          "points": 35,
+          "played": 9
+        },
         {
           "club": "Tours",
           "points": 33,
-          "played": 8
-        },
-        {
-          "club": "Saint-Jean-en-Royans",
-          "points": 30,
           "played": 8
         },
         {
@@ -215,7 +215,7 @@
         {
           "club": "Saint-Malo",
           "points": 16,
-          "played": 8
+          "played": 9
         },
         {
           "club": "Auxerre",
@@ -238,7 +238,7 @@
           "played": 8
         }
       ],
-      "standingsUpdatedAt": "2026-11-14T22:58:41+00:00"
+      "standingsUpdatedAt": "2026-11-15T14:02:21+00:00"
     },
     "espoirs": {
       "games": [
@@ -319,7 +319,9 @@
           "time": "13:30",
           "home": "Courbevoie",
           "away": "Tours",
-          "status": "scheduled"
+          "status": "live",
+          "homeScore": 10,
+          "awayScore": 5
         },
         {
           "date": "2026-11-29",
@@ -413,7 +415,7 @@
           "status": "scheduled"
         }
       ],
-      "gamesUpdatedAt": "2026-11-14T22:58:41+00:00",
+      "gamesUpdatedAt": "2026-11-15T14:02:21+00:00",
       "standings": [
         {
           "club": "Issoire",
@@ -476,7 +478,7 @@
           "played": 8
         }
       ],
-      "standingsUpdatedAt": "2026-11-14T22:58:41+00:00"
+      "standingsUpdatedAt": "2026-11-15T14:02:21+00:00"
     }
   }
 }
