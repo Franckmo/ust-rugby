@@ -85,3 +85,10 @@ PWA installée sur Android / navigateur desktop
 - **Test après correctif** : workflow `42513061831` exécuté avec succès par déclenchement `push`, fichier `ffr-data.json` mis à jour à `2026-11-08T19:03:56Z`.
 - **Score FFR récupéré à ce moment-là** : Seniors Tours–Montmélian **43–18 terminé** (Tours 33 points / 8 matchs), Espoirs **24–10 terminé** (Tours 18 points / 8 matchs). Une source tierce indiquait 44–18 ; **ne pas confondre cette divergence avec la source officielle FFR**.
 - **Point restant à surveiller** : les exécutions planifiées doivent se déclencher réellement les jours suivants. Le bouton « Recharger les données » lit le fichier publié ; il ne déclenche pas lui-même un nouveau relevé FFR.
+
+## Incident du dimanche 15 novembre 2026 — scores Espoirs
+
+- À 14h59 heure française, la PWA indiquait des données anciennes de **901 minutes** (dernier relevé 14/11/2026 23h58), alors que le match **Courbevoie–Tours Espoirs** avait commencé à 13h30.
+- Inspection de l'historique GitHub Actions : aucune exécution du workflow FFR le dimanche 15/11 avant 15h02, malgré un cron configuré pour des lancements fréquents. Les exécutions planifiées du 14/11 fonctionnaient, mais **la planification GitHub n'est pas suffisamment fiable pour garantir le direct**.
+- Collecte relancée via un commit sur `scripts/sync_ffr.py` (workflow `43722102046`) : succès, logs attestant **FFR DIRECT: Espoirs Courbevoie 10–5 Tours** à 15h02, 15/11/2026 (score provisoire). `ffr-data.json` mis à jour à `2026-11-15T14:02:21Z`, Pages publié avec succès.
+- Le problème n'est pas l'extraction des scores FFR mais le **déclenchement automatique irrégulier des workflows planifiés**. Une solution de scheduling externe fiable, adaptée à la sécurité et au coût, reste à étudier si un vrai quasi-direct toutes les 5 minutes est indispensable. Ne pas promettre 5 minutes garanties avec GitHub Actions schedule.
