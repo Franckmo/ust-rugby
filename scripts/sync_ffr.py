@@ -63,6 +63,8 @@ def collect_live(browser):
     "home":NAMES[home],"away":NAMES[away],"status":"live",
     "homeScore":int(home_score),"awayScore":int(away_score)
    })
+  idx=text.find("US Tours")
+  print("FFR DIRECT DEBUG:",text[max(0,idx-230):idx+300] if idx>=0 else text[:650])
   print("FFR DIRECT:",{k:[f"{g['home']} {g['homeScore']}-{g['awayScore']} {g['away']}" for g in v] for k,v in found.items()})
   return found
  finally:
