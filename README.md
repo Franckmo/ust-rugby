@@ -107,3 +107,11 @@ PWA installée sur Android / navigateur desktop
 - Correctif `index.html` : le bilan est désormais calculé sur `results[team]` à chaque rendu, en tenant compte du domicile/extérieur et des éventuels nuls. Les résultats officiels sont rechargés via `ffr-data.json`.
 - Contrôle avec les neuf matchs terminés du 17/11 : Seniors **7V / 2D** et Espoirs **4V / 5D**.
 - Préserver ce calcul dynamique lors de toute modification future ; ne pas réintroduire de bilans codés en dur.
+
+## Cache et rechargement de la PWA — 17 novembre 2026
+
+- La publication du calcul dynamique du bilan a réussi dans GitHub Pages mais une capture de la PWA installée affichait encore le vieux libellé `6V / 1D`. Il s'agissait d'une **ancienne version du code restée ouverte sur Android**, et non d'un échec du fichier FFR.
+- `index.html` intègre maintenant un identifiant `APP_BUILD` et vérifie la version du code publié à chaque retour au premier plan, et périodiquement (5 minutes), avant de recharger la page si une version différente est publiée.
+- Le service worker passe à `ust-rugby-v3` et son enregistrement requiert `updateViaCache:'none'` avec `registration.update()` pour contrôler les mises à jour du cache.
+- **À chaque prochaine modification de l'interface, il faut changer la valeur `APP_BUILD` dans `index.html`**, sinon la détection de nouvelle version ne peut pas fonctionner.
+- Une version de la PWA déjà ouverte avant ce correctif ne possède pas le détecteur : **la fermer complètement puis la rouvrir** après publication. Les données FFR seules peuvent être renouvelées via « Recharger les données », mais cela ne remplace pas une mise à jour de l'interface.
