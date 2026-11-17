@@ -98,5 +98,29 @@ async function loadFFR(manual=false){
 }
 el('refreshFFR').addEventListener('click',()=>loadFFR(true));
 ['team','view','filter','resultsFilter'].forEach(group=>{el(group).querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{if(group==='team')team=b.dataset.value;if(group==='view')view=b.dataset.value;if(group==='filter')filter=b.dataset.value;if(group==='resultsFilter')resultsFilter=b.dataset.value;el(group).querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===b));render()}))});render();loadFFR();setInterval(()=>{if(!document.hidden)loadFFR()},120000);
-if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+// Vérifie aussi la version du code : recharger les données FFR ne met pas à jour l'interface.
+const APP_BUILD='2026-11-17-bilan-dynamique';
+let checkingAppVersion=false;
+async function checkAppVersion(){
+ if(checkingAppVersion||document.hidden)return;
+ checkingAppVersion=true;
+ try{
+  const response=await fetch('./index.html?check='+Date.now(),{cache:'no-store'});
+  if(!response.ok)return;
+  const source=await response.text();
+  const match=source.match(/const APP_BUILD='([^']+)'/);
+  if(match&&match[1]!==APP_BUILD)window.location.reload();
+ }catch(error){console.warn('Vérification de la version impossible',error)}
+ finally{checkingAppVersion=false}
+}
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkAppVersion()});
+setInterval(checkAppVersion,5*60*1000);
+if('serviceWorker'in navigator){
+ window.addEventListener('load',async()=>{
+  try{
+   const reg=await navigator.serviceWorker.register('./sw.js',{updateViaCache:'none'});
+   await reg.update();
+  }catch(error){console.warn('Mise à jour du service worker indisponible',error)}
+ });
+}
 </script></body></html>
