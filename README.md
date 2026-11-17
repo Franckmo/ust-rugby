@@ -100,3 +100,10 @@ PWA installée sur Android / navigateur desktop
 - **État au 15 novembre 2026, 16h55 (Paris)** : compte cron-job.org et jeton GitHub finement limité créés par le propriétaire ; tâche **activée et sauvegardée** selon sa confirmation. Test manuel HTTP **204** à 16h52 ; run GitHub **43732306509**, `workflow_dispatch`, **success**, données FFR actualisées à 16h53. Un nouveau déclenchement `workflow_dispatch` apparaît à 16h55, encore en cours lors du contrôle. **Régularité des appels toutes les cinq minutes encore à confirmer sur plusieurs exécutions terminées.**
 - **Sécurité** : jamais de jeton dans Git, dans le chat ou dans un lien public. Le prestataire cron-job.org conservera le jeton en en-tête HTTP ; limiter les droits à `ust-rugby` avec permission Actions write.
 - **Critère d'acceptation** : au moins trois exécutions automatiques réussies à cinq minutes d'intervalle avec données FFR fraîches publiées.
+
+## Correction bilan victoires / défaites — 17 novembre 2026
+
+- Bug signalé : les tuiles de bilan Seniors et Espoirs utilisaient des chaînes fixes (`6V / 1D` et `3V / 4D`) et ne suivaient pas les résultats FFR.
+- Correctif `index.html` : le bilan est désormais calculé sur `results[team]` à chaque rendu, en tenant compte du domicile/extérieur et des éventuels nuls. Les résultats officiels sont rechargés via `ffr-data.json`.
+- Contrôle avec les neuf matchs terminés du 17/11 : Seniors **7V / 2D** et Espoirs **4V / 5D**.
+- Préserver ce calcul dynamique lors de toute modification future ; ne pas réintroduire de bilans codés en dur.
