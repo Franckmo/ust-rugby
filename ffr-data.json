@@ -1,6 +1,6 @@
 {
   "source": "FFR Mon Club House",
-  "lastChecked": "2026-11-28T17:05:51+00:00",
+  "lastChecked": "2026-11-28T17:16:03+00:00",
   "teams": {
     "seniors": {
       "games": [
@@ -177,7 +177,7 @@
           "status": "scheduled"
         }
       ],
-      "gamesUpdatedAt": "2026-11-28T17:05:51+00:00",
+      "gamesUpdatedAt": "2026-11-28T17:16:03+00:00",
       "standings": [
         {
           "club": "Saint-Jean-en-Royans",
@@ -190,17 +190,17 @@
           "played": 9
         },
         {
+          "club": "Montmélian",
+          "points": 33,
+          "played": 10
+        },
+        {
           "club": "Courbevoie",
           "points": 30,
           "played": 9
         },
         {
           "club": "Beauvais",
-          "points": 29,
-          "played": 9
-        },
-        {
-          "club": "Montmélian",
           "points": 29,
           "played": 9
         },
@@ -226,8 +226,8 @@
         },
         {
           "club": "Saint-Malo",
-          "points": 16,
-          "played": 9
+          "points": 17,
+          "played": 10
         },
         {
           "club": "Paris UC",
@@ -240,7 +240,7 @@
           "played": 9
         }
       ],
-      "standingsUpdatedAt": "2026-11-28T17:05:51+00:00"
+      "standingsUpdatedAt": "2026-11-28T17:16:03+00:00"
     },
     "espoirs": {
       "games": [
@@ -417,7 +417,7 @@
           "status": "scheduled"
         }
       ],
-      "gamesUpdatedAt": "2026-11-28T17:05:51+00:00",
+      "gamesUpdatedAt": "2026-11-28T17:16:03+00:00",
       "standings": [
         {
           "club": "Issoire",
@@ -425,19 +425,19 @@
           "played": 9
         },
         {
+          "club": "Montmélian",
+          "points": 37,
+          "played": 10
+        },
+        {
           "club": "Saint-Jean-en-Royans",
           "points": 34,
           "played": 9
         },
         {
-          "club": "Montmélian",
-          "points": 33,
-          "played": 9
-        },
-        {
           "club": "Saint-Malo",
           "points": 26,
-          "played": 9
+          "played": 10
         },
         {
           "club": "Nuits-Saint-Georges",
@@ -480,7 +480,7 @@
           "played": 9
         }
       ],
-      "standingsUpdatedAt": "2026-11-28T17:05:51+00:00"
+      "standingsUpdatedAt": "2026-11-28T17:16:03+00:00"
     }
   }
 }
